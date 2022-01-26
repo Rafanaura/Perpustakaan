@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <title>Pinjam Buku</title>
+
+  <script>
+     let edit = false;
+      let indeks = 0;
+      // Tambah = () => {
+      //   edit = false;
+      //   //mengosongkan form
+      //   document.getElementById('judul_buku').value = "";
+      //   document.getElementById('jumlah_buku').value = "";
+      //   document.getElementById('nama_siswa').value = "";
+      //   document.getElementById('kelas_siswa').value = "";
+      //   document.getElementById('alamat').value = "";
+      // }
+      // Edit = (index) => {
+      //   edit = true;
+      //   indeks = index;
+      //   let form = document.getElementById('form-perpus');
+      //   // mengambil data dari  tabel
+      //   let judul_buku = form.rows[index].cells[0].innerHTML;
+      //   let jumlah_buku = form.rows[index].cells[1].innerHTML;
+      //   let nama_siswa = form.rows[index].cells[2].innerHTML;
+      //   let kelas_siswa = form.rows[index].cells[3].innerHTML;
+      //   let alamat = form.rows[index].cells[4].innerHTML;
+ 
+      //   //memasukkan data ke form
+      //   document.getElementById('judul_buku').value = judul_buku;
+      //   document.getElementById('jumlah_buku').value = jumlah_buku;
+      //   document.getElementById('nama_siswa').value = nama_siswa;
+      //   document.getElementById('kelas_siswa').value = kelas_siswa;
+      //   document.getElementById('alamat').value = alamat;
+      // }
+      Simpan = () => {
+        let form = document.getElementById('form-perpus');
+        //menampuang data dari form
+
+        let judul_buku = document.getElementById('judul_buku').value;
+        let jumlah_buku = document.getElementById('jumlah_buku').value;
+        let nama_siswa = document.getElementById('nama_siswa').value;
+        let kelas_siswa = document.getElementById('kelas_siswa').value;
+        let alamat = document.getElementById('alamat').value;
+        
+        // jika aksinya edit
+        // if(edit){
+        //   form.rows[indeks].cells[0].innerHTML = judul_buku;
+        //   form.rows[indeks].cells[1].innerHTML = jumlah_buku;
+        //   form.rows[indeks].cells[2].innerHTML = nama_siswa;
+        //   form.rows[indeks].cells[3].innerHTML = kelas_siswa;
+        //   form.rows[indeks].cells[4].innerHTML = alamat;
+        // jika aksinya tambah
+        // }else{
+          let element = "";
+          element += "<tr>";
+            element += "<td>"+ judul_buku +"</td>";
+            element += "<td>"+ jumlah_buku +"</td>";
+          element += "<td>"+ nama_siswa +"</td>";
+          element += "<td>"+ kelas_siswa +"</td>";
+          element += "<td>"+ alamat +"</td>";
+          element += "<td>";
+            element += '<button type="button" class="btn btn-sm btn-danger" ';
+            element += 'onclick="Hapus(this.parentElement.parentElement.rowIndex)">Hapus</button>';
+            element += "</td>";
+            element += "</tr>";
+            form.innerHTML += element;
+      //   }
+      }
+
+      Hapus = (index) => {
+        let form = document.getElementById('form-perpus');
+        form.deleteRow(index);
+      }
+
+</script>
+   
+</head>
+<body>
+    <h2 align="center">Perpustakaan Pinjam Buku</h2>
+    <div class="form" id="form-perpus">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4>Form Siswa</h4>
+            <span class="close" data-dismiss="modal">&times;</span>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Judul Buku</label>
+              <div class="col-sm-12">
+                <input type="text" id="judul_buku" class="form-control">
+              </div>
+              <div class="form-group">
+              <label>Jumlah Buku</label>
+              <div class="col-sm-12">
+                <input type="number" id="jumlah_buku" class="form-control">
+              </div>
+            <div class="form-group">
+              <label>Nama</label>
+              <div class="col-sm-12">
+                <input type="text" id="nama_siswa" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Kelas</label>
+              <div class="col-sm-12">
+                <input type="text" id="kelas_siswa" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Alamat</label>
+              <div class="col-sm-12">
+                <input type="text" id="alamat" class="form-control">
+              </div>
+            </div>
+          </div>
+         </div>
+         <div class="modal-footer">
+               
+          <button type="button" class="btn btn-sm btn-success" data-dismiss="modal"
+          onclick="Simpan();">
+            Simpan
+          </button>
+        </div>
+      </div>
+      </div>
+    </div> 
+    </div>
+    
+             <div class="container">
+              <table class="table table-bordered">
+                <thead>
+                  <tr">
+                      <th>Judul Buku</th>
+                      <th>Jumlah Buku</th>
+                      <th>Nama Siswa</th>
+                      <th>Kelas</th>
+                      <th>Alamat</th>
+                      <th>Action</th>
+                  </tr>
+                </thead>
+                  <!-- <tbody>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td> <button type="button" class="btn btn-sm btn-danger"
+                      onclick="Hapus(this.parentElement.parentElement.rowIndex)">
+                        Hapus
+                      </button></td>
+
+                  </tr> -->
+                  <!-- <button type="button" class="btn btn-sm btn-info"
+                      onclick="Edit(this.parentElement.parentElement.rowIndex)">
+                        Edit
+                      </button> -->
+                    <!-- <button type="button" class="btn btn-sm btn-primary"
+                    onclick="Tambah()">
+                      Tambah
+                    </button> -->
+                    <tbody class="text-xs font-weight-bold">
+                    </tbody>
+              </table>
+      
+               
+              </div>
+       
+  
+      </body>
+    </html>
+    
